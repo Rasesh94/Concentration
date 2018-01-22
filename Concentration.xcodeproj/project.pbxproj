@@ -12,6 +12,8 @@
 		74D5574F2014129E0098463F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D5574D2014129E0098463F /* Main.storyboard */; };
 		74D557512014129E0098463F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D557502014129E0098463F /* Assets.xcassets */; };
 		74D557542014129E0098463F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D557522014129E0098463F /* LaunchScreen.storyboard */; };
+		74D5575D2015447D0098463F /* Concentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5575C2015447D0098463F /* Concentration.swift */; };
+		74D5575F201545340098463F /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D5575E201545340098463F /* Card.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		74D557502014129E0098463F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		74D557532014129E0098463F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		74D557552014129E0098463F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D5575C2015447D0098463F /* Concentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Concentration.swift; sourceTree = "<group>"; };
+		74D5575E201545340098463F /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +60,8 @@
 			children = (
 				74D5574B2014129E0098463F /* ViewController.swift */,
 				74D5574D2014129E0098463F /* Main.storyboard */,
+				74D5575C2015447D0098463F /* Concentration.swift */,
+				74D5575E201545340098463F /* Card.swift */,
 				74D5575B201413F80098463F /* New Group */,
 				74D557552014129E0098463F /* Info.plist */,
 			);
@@ -146,6 +152,8 @@
 			files = (
 				74D5574C2014129E0098463F /* ViewController.swift in Sources */,
 				74D5574A2014129E0098463F /* AppDelegate.swift in Sources */,
+				74D5575D2015447D0098463F /* Concentration.swift in Sources */,
+				74D5575F201545340098463F /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
