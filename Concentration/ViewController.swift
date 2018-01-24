@@ -10,26 +10,41 @@ import UIKit //includes UIKit, which is the iOS frameworks -- buttons,frameworks
 
 class ViewController: UIViewController
 {    //UIViewController is the superclass.
-//this class knows everything about the UI.
-   private lazy var game = Concentration(numberOfPairsOfCards:numberOfPairsOfCards)
-   //lazy's can't have a didset. But a lazy is cool because it waits for the data being passed to the be processed prior to running.
+    //this class knows everything about the UI.
+    private lazy var game = Concentration(numberOfPairsOfCards:numberOfPairsOfCards)
+    //lazy's can't have a didset. But a lazy is cool because it waits for the data being passed to the be processed prior to running.
     
     
     var numberOfPairsOfCards: Int {
-            return ((cardButtons.count + 1) / 2)
+        return ((cardButtons.count + 1) / 2)
     }
     
     private(set) var flipCount = 0 { //i dont mind people getting it, but no set.
+        //initalizing doesn't initiate the didset.
         didSet{ //property ovserver
-            flipCountLabel.text = "Flips: \(flipCount)"
+            updateFlipCountLabel()
+            }
+        }
+    private func updateFlipCountLabel(){
+        let attributes: [NSAttributedStringKey:Any] = [
+            .strokeWidth: 5.0,
+            .strokeColor: #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
+        ]
+        let attributesString = NSAttributedString(string: "Flips: \(flipCount)", attributes: attributes)
+            flipCountLabel.attributedText = attributesString
+    }
+
+    @IBOutlet private weak var flipCountLabel: UILabel!{
+        didSet{ //property ovserver
+            updateFlipCountLabel()
         }
     }
-    
-    @IBOutlet private weak var flipCountLabel: UILabel!
-    
+    //didset gets called when the connection is made
+
 
     @IBOutlet private var cardButtons: [UIButton]!
-    private var emojiChoices = ["👻","💩","🙈","🐴",]
+  //  private var emojiChoices = ["👻","💩","🙈","🐴",]
+    private var emojiChoices = "👻💩🙈🐴"
     @IBAction private func touchCard(_ sender: UIButton)
     {
         flipCount += 1
@@ -58,13 +73,14 @@ class ViewController: UIViewController
             }
         }
     }
-    private var emoji = [Int:String]()
-    
+    private var emoji = [Card:String]()
+    //making a card
     private func  emoji(for card: Card) -> String{
-        if emoji[card.identifier] == nil {
+        if emoji[card] == nil {
          // let x = 5.arc4random
             if emojiChoices.count > 0 {
-            emoji[card.identifier] = emojiChoices.remove(at: emojiChoices.count.arc4random)
+                let randomStringIndex = emojiChoices.index(emojiChoices.startIndex, offsetBy: emojiChoices.count.arc4random)
+                emoji[card] = String(emojiChoices.remove(at: randomStringIndex))
             }
         }
         //this line replaces the commented code below
@@ -72,7 +88,7 @@ class ViewController: UIViewController
             return emoji[card.identifier]!
         } else {
         return "?"*/
-        return emoji[card.identifier] ?? "?"
+        return emoji[card] ?? "?"
         }
 }
 extension Int {

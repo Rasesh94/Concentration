@@ -7,9 +7,10 @@
 //
 
 import Foundation
-class Concentration
+struct Concentration
 {
-   private var indexOfOneAndOnlyFaceUpCard: Int?{
+    //swift assumes vars are writable.
+ /*  private var indexOfOneAndOnlyFaceUpCard: Int?{
         get {
             var foundIndex: Int?
             for index in cards.indices{
@@ -29,18 +30,27 @@ class Concentration
                 cards[index].isFaceUp = (index == newValue)
             }
         }
-    } //good use of optional, match is either matched or not.
+    } //good use of optional, match is either matched or not.*/
+    
+    //simplifiying indexOfOneAndOnlyFaceUpCard functions
+    
+    private var indexOfOneAndOnlyFaceUpCard: Int?{
+        get {
+            return cards.indices.filter {cards[$0].isFaceUp}.oneAndOnly
+            //return faceUpCardIndices.count == 1 ? faceUpCardIndices.first : nil
+        }
+    } //good use of optional, match is either matched or not.*/
     
     
     private(set) var cards = [Card]()
    //fundamental public API
-    func chooseCard(at index: Int)
+   mutating func chooseCard(at index: Int) //not marked mutable, assumed not to mutable
     {
         assert(cards.indices.contains(index), "Concentration.chooseCard(at: \(index): chosen index not in cards")
         if !cards[index].isMatched {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index{
                 //check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] { //because equatable due to the struct hashable!
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                 }
@@ -66,4 +76,9 @@ class Concentration
         }
     }
     // TODO: Shuffle the cards
+}
+extension Collection {
+    var oneAndOnly: Element? {
+        return count == 1 ? first : nil
+    }
 }
